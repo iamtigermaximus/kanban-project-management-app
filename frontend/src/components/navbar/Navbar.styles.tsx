@@ -1,6 +1,5 @@
 import { AppBar, Box, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-//import { styled } from '@mui/system';
 
 export const NavigationBar = styled(AppBar)`
   background-color: #2b2c37;
