@@ -1,14 +1,5 @@
-import {
-  ColumnTaskContainer,
-  ColumnHeader,
-  ProjectColumn,
-  ProjectColumnCard,
-} from './Column.styles';
-import { initData } from '../../actions/initData';
-import Card from '../card/Card';
-import AddNewCard from '../modals/addNewCard/AddNewCard';
-import AddNewColumn from '../modals/addNewColumn/AddNewColumn';
 import { ChangeEvent, useState } from 'react';
+import { initData } from '../../actions/initData';
 import {
   Box,
   Checkbox,
@@ -18,6 +9,15 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
+import {
+  ColumnTaskContainer,
+  ColumnHeader,
+  ProjectColumn,
+  ProjectColumnCard,
+} from './Column.styles';
+import Card from '../card/Card';
+import AddNewCard from '../modals/addNewCard/AddNewCard';
+import AddNewColumn from '../modals/addNewColumn/AddNewColumn';
 import { SubtasksColumn } from '../modals/addNewTask/AddNewTask.styles';
 
 const style = {
