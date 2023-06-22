@@ -42,7 +42,7 @@ exports.updateCardById = async (req, res) => {
   try {
     const { id } = req.params;
     const newCard = req.body;
-    const updatedCard = await Data.findByIdAndUpdate(id, newCard, {
+    const updatedCard = await Card.findByIdAndUpdate(id, newCard, {
       new: true,
     });
     res.status(200).json(updatedCard);
