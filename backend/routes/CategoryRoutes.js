@@ -13,7 +13,7 @@ const router = express.Router();
 router.get('/', getAllCategories);
 
 // Route to retrieve data by id
-router.get('/', getCategoryById);
+router.get('/:id', getCategoryById);
 
 // Route to create new data
 router.post('/', createCategory);

@@ -13,7 +13,7 @@ const router = express.Router();
 router.get('/', getAllCards);
 
 // Route to retrieve data by id
-router.get('/', getCardById);
+router.get('/:id', getCardById);
 
 // Route to create new data
 router.post('/', createCard);

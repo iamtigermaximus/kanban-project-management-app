@@ -13,7 +13,7 @@ const router = express.Router();
 router.get('/', getAllProjects);
 
 // Route to retrieve data by id
-router.get('/', getProjectById);
+router.get('/:id', getProjectById);
 
 // Route to create new data
 router.post('/', createProject);

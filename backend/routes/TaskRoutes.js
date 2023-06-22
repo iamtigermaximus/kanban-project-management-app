@@ -13,7 +13,7 @@ const router = express.Router();
 router.get('/', getAllTasks);
 
 // Route to retrieve data by id
-router.get('/', getTaskById);
+router.get('/:id', getTaskById);
 
 // Route to create new data
 router.post('/', createTask);
