@@ -49,29 +49,6 @@ export const AddNewBoardButton = styled(Button)`
   }
 `;
 
-export const ModalButtonContainer = styled(Box)`
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-  padding: 10px 0;
-  width: 100%;
-`;
-
-export const ModalButton = styled(Button)`
-  background-color: #3f51b5;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  color: white;
-  letter-spacing: 1px;
-  width: 100%;
-  padding: 20px;
-
-  &:hover {
-    background-color: #7986cb;
-  }
-`;
-
 export const BoardColumn = styled('div')`
   display: flex;
   flex-direction: row;
