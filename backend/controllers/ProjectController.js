@@ -42,7 +42,7 @@ exports.updateProjectById = async (req, res) => {
   try {
     const { id } = req.params;
     const newProject = req.body;
-    const updatedProject = await Data.findByIdAndUpdate(id, newProject, {
+    const updatedProject = await Project.findByIdAndUpdate(id, newProject, {
       new: true,
     });
     res.status(200).json(updatedProject);
