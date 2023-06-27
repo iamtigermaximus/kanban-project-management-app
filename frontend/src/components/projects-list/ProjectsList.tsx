@@ -9,7 +9,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IProject } from '../../interfaces/Kanban';
 
-const ProjectsList = () => {
+type ProjectsListProps = {
+  handleProjectSelect: (project: IProject) => void;
+};
+
+const ProjectsList = ({ handleProjectSelect }: ProjectsListProps) => {
   const [projects, setProjects] = useState<IProject[]>([]); // State variable to store the fetched projects
 
   const fetchData = async () => {
@@ -24,11 +28,18 @@ const ProjectsList = () => {
   useEffect(() => {
     fetchData(); // Call the function when the component mounts
   }, []);
+
+  const selectProject = (project: IProject) => {
+    handleProjectSelect(project);
+  };
   return (
     <ProjectsListContainer>
       <SideBarHeader>All Boards (0)</SideBarHeader>
       {projects.map((project) => (
-        <ProjectNameContainer key={project.id}>
+        <ProjectNameContainer
+          key={project.id}
+          onClick={() => selectProject(project)}
+        >
           <ProjectName>{project.name}</ProjectName>
         </ProjectNameContainer>
       ))}

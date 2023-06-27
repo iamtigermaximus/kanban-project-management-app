@@ -1,10 +1,17 @@
+import { IProject } from '../../interfaces/Kanban';
 import ProjectsList from '../projects-list/ProjectsList';
 import { SideBarContainer } from './Sidebar.styles';
 
-const Sidebar = () => {
+type SidebarProps = {
+  projects: IProject[];
+  handleProjectSelect: (project: IProject | null) => void;
+  defaultSelectedProject: IProject | null;
+};
+
+const Sidebar = ({ handleProjectSelect }: SidebarProps) => {
   return (
     <SideBarContainer>
-      <ProjectsList />
+      <ProjectsList handleProjectSelect={handleProjectSelect} />
     </SideBarContainer>
   );
 };

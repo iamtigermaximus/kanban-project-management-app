@@ -1,5 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-//import { initData } from '../../actions/initData';
+import { ChangeEvent, useState } from 'react';
 import {
   Box,
   Checkbox,
@@ -21,7 +20,6 @@ import AddNewCard from '../modals/addNewCard/AddNewCard';
 import AddNewColumn from '../modals/addNewColumn/AddNewColumn';
 import { SubtasksColumn } from '../modals/addNewTask/AddNewTask.styles';
 import { IProject } from '../../interfaces/Kanban';
-import axios from 'axios';
 
 const style = {
   position: 'absolute',
@@ -32,24 +30,14 @@ const style = {
   p: 4,
 };
 
-const Column = () => {
+type ColumnProps = {
+  selectedProject: IProject | null; // Replace 'IProject' with the appropriate type for your project object
+};
+
+const Column = ({ selectedProject }: ColumnProps) => {
   const [openCard, setOpenCard] = useState(false);
   const [status, setStatus] = useState('');
   const [checked, setChecked] = useState(true);
-  const [projects, setProjects] = useState<IProject[]>([]); // State variable to store the fetched projects
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('http://localhost:5500/api/projects'); // Replace with your API endpoint
-      setProjects(response.data); // Handle the retrieved data
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData(); // Call the function when the component mounts
-  }, []);
 
   const handleCheckbox = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -68,99 +56,89 @@ const Column = () => {
 
   return (
     <TaskBoardContainer>
-      {projects.map((project) => (
-        <ProjectColumn key={project.id}>
-          {project.data.map((singleProject) => (
-            <>
-              <ProjectColumnCard key={singleProject.id}>
-                <ColumnTaskContainer>
-                  <ColumnHeader>{singleProject.categoryTitle} (0)</ColumnHeader>
-                  {singleProject.cards.map((card) => (
-                    <>
-                      <div onClick={handleOpenCard}>
-                        <Card
-                          key={card.id}
-                          title={card.title}
-                          desc={card.desc}
-                        />
-                      </div>
-                      <Modal
-                        open={openCard}
-                        onClose={handleCloseCard}
-                        aria-labelledby="parent-modal-title"
-                        aria-describedby="parent-modal-description"
+      <ProjectColumn>
+        {selectedProject?.data.map((project) => (
+          <ProjectColumnCard key={project.id}>
+            <ColumnTaskContainer>
+              <ColumnHeader>{project.categoryTitle} (0)</ColumnHeader>
+              {project.cards.map((card) => (
+                <>
+                  <div onClick={handleOpenCard}>
+                    <Card key={card.id} title={card.title} desc={card.desc} />
+                  </div>
+                  <Modal
+                    open={openCard}
+                    onClose={handleCloseCard}
+                    aria-labelledby="parent-modal-title"
+                    aria-describedby="parent-modal-description"
+                  >
+                    <Box sx={{ ...style, backgroundColor: 'white' }}>
+                      <h2 id="parent-modal-title">Task 1</h2>
+                      <p>{card.desc}</p>
+                      <Box
+                        component="form"
+                        sx={{
+                          '& .MuiTextField-root': {
+                            my: 1,
+                            width: '100%',
+                          },
+                        }}
+                        noValidate
+                        autoComplete="off"
                       >
-                        <Box sx={{ ...style, backgroundColor: 'white' }}>
-                          <h2 id="parent-modal-title">Task 1</h2>
-                          <p>{card.desc}</p>
-                          <Box
-                            component="form"
-                            sx={{
-                              '& .MuiTextField-root': {
-                                my: 1,
-                                width: '100%',
-                              },
-                            }}
-                            noValidate
-                            autoComplete="off"
-                          >
-                            <div>
-                              <h5>Subtasks</h5>
-                              <SubtasksColumn>
-                                <Checkbox
-                                  checked={checked}
-                                  onChange={handleCheckbox}
-                                  inputProps={{ 'aria-label': 'controlled' }}
-                                />
-                                <h3>Subtask 1</h3>
-                              </SubtasksColumn>
-                              <SubtasksColumn>
-                                <Checkbox
-                                  checked={checked}
-                                  onChange={handleCheckbox}
-                                  inputProps={{ 'aria-label': 'controlled' }}
-                                />
-                                <h3>Subtask 2</h3>
-                              </SubtasksColumn>
-                              <SubtasksColumn>
-                                <Checkbox
-                                  checked={checked}
-                                  onChange={handleCheckbox}
-                                  inputProps={{ 'aria-label': 'controlled' }}
-                                />
-                                <h3>Subtask 3</h3>
-                              </SubtasksColumn>
-                              <h5>Current Status</h5>
-                              <FormControl fullWidth>
-                                <Select
-                                  labelId="demo-simple-select-label"
-                                  id="demo-simple-select"
-                                  value={status}
-                                  onChange={handleChange}
-                                >
-                                  <MenuItem value="Todo">Todo</MenuItem>
-                                  <MenuItem value="In Progress">
-                                    In Progress
-                                  </MenuItem>
-                                  <MenuItem value="Completed">
-                                    Completed
-                                  </MenuItem>
-                                </Select>
-                              </FormControl>
-                            </div>
-                          </Box>
-                        </Box>
-                      </Modal>
-                    </>
-                  ))}
-                </ColumnTaskContainer>
-                <AddNewCard />
-              </ProjectColumnCard>
-            </>
-          ))}
-        </ProjectColumn>
-      ))}
-      <AddNewColumn />
+                        <div>
+                          <h5>Subtasks</h5>
+                          <SubtasksColumn>
+                            <Checkbox
+                              checked={checked}
+                              onChange={handleCheckbox}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                            <h3>Subtask 1</h3>
+                          </SubtasksColumn>
+                          <SubtasksColumn>
+                            <Checkbox
+                              checked={checked}
+                              onChange={handleCheckbox}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                            <h3>Subtask 2</h3>
+                          </SubtasksColumn>
+                          <SubtasksColumn>
+                            <Checkbox
+                              checked={checked}
+                              onChange={handleCheckbox}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                            <h3>Subtask 3</h3>
+                          </SubtasksColumn>
+                          <h5>Current Status</h5>
+                          <FormControl fullWidth>
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              value={status}
+                              onChange={handleChange}
+                            >
+                              <MenuItem value="Todo">Todo</MenuItem>
+                              <MenuItem value="In Progress">
+                                In Progress
+                              </MenuItem>
+                              <MenuItem value="Completed">Completed</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </div>
+                      </Box>
+                    </Box>
+                  </Modal>
+                </>
+              ))}
+            </ColumnTaskContainer>
+            <AddNewCard />
+          </ProjectColumnCard>
+        ))}
+        <AddNewColumn />
+      </ProjectColumn>
     </TaskBoardContainer>
   );
 };
