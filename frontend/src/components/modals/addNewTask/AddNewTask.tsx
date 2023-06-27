@@ -16,19 +16,11 @@ import {
   NewTaskContainer,
   NewTaskMenuContainer,
   SubtasksColumn,
+  style,
 } from './AddNewTask.styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditBoardModal from '../editBoard/EditBoardModal';
 import useModalState from '../useModalState';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  p: 4,
-};
 
 const AddNewTask = () => {
   const { open, handleOpen, handleClose } = useModalState(false);

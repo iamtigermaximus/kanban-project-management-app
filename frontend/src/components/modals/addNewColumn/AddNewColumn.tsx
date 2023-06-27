@@ -1,6 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Modal, TextField } from '@mui/material';
-import { useState } from 'react';
 import {
   AddNewTaskButton,
   BoardColumn,
@@ -8,17 +7,9 @@ import {
   ColumnTaskContainer,
   ModalButton,
   ModalButtonContainer,
+  style,
 } from './AddNewColumn.styles';
 import useModalState from '../useModalState';
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  p: 4,
-};
 
 const AddNewColumn = () => {
   const { open, handleOpen, handleClose } = useModalState(false);

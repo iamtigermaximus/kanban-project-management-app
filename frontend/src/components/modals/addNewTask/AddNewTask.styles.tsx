@@ -58,3 +58,11 @@ export const ModalButton = styled(Button)`
     background-color: #7986cb;
   }
 `;
+export const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  p: 4,
+};

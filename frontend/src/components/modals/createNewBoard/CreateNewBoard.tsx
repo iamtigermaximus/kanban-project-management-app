@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Modal, Box, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
@@ -9,16 +8,7 @@ import {
   ModalButtonContainer,
 } from './CreateNewBoard.styles';
 import useModalState from '../useModalState';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  height: 600,
-  p: 4,
-};
+import { style } from '../addNewCard/AddNewCard.styles';
 
 const CreateNewBoard = () => {
   const { open, handleOpen, handleClose } = useModalState(false);

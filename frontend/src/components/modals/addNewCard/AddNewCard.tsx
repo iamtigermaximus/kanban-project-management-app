@@ -12,20 +12,12 @@ import {
   AddNewTaskContainer,
   ModalButton,
   ModalButtonContainer,
+  style,
 } from './AddNewCard.styles';
 import { SubtasksColumn } from '../addNewTask/AddNewTask.styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import useModalState from '../useModalState';
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  p: 4,
-};
 
 const AddNewCard = () => {
   const [status, setStatus] = useState('');
