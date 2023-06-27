@@ -15,7 +15,7 @@ export interface ICard {
   labels: ILabel[];
   date: string;
   tasks: ITask[];
-  desc?: string;
+  desc: string;
 }
 
 export interface ICategory {

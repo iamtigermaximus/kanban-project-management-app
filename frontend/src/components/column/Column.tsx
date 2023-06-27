@@ -1,5 +1,5 @@
-import { ChangeEvent, useState } from 'react';
-import { initData } from '../../actions/initData';
+import { ChangeEvent, useEffect, useState } from 'react';
+//import { initData } from '../../actions/initData';
 import {
   Box,
   Checkbox,
@@ -10,6 +10,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import {
+  TaskBoardContainer,
   ColumnTaskContainer,
   ColumnHeader,
   ProjectColumn,
@@ -19,6 +20,8 @@ import Card from '../card/Card';
 import AddNewCard from '../modals/addNewCard/AddNewCard';
 import AddNewColumn from '../modals/addNewColumn/AddNewColumn';
 import { SubtasksColumn } from '../modals/addNewTask/AddNewTask.styles';
+import { IProject } from '../../interfaces/Kanban';
+import axios from 'axios';
 
 const style = {
   position: 'absolute',
@@ -33,6 +36,20 @@ const Column = () => {
   const [openCard, setOpenCard] = useState(false);
   const [status, setStatus] = useState('');
   const [checked, setChecked] = useState(true);
+  const [projects, setProjects] = useState<IProject[]>([]); // State variable to store the fetched projects
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:5500/api/projects'); // Replace with your API endpoint
+      setProjects(response.data); // Handle the retrieved data
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // Call the function when the component mounts
+  }, []);
 
   const handleCheckbox = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -50,8 +67,8 @@ const Column = () => {
   };
 
   return (
-    <>
-      {initData.map((project) => (
+    <TaskBoardContainer>
+      {projects.map((project) => (
         <ProjectColumn key={project.id}>
           {project.data.map((singleProject) => (
             <>
@@ -62,7 +79,7 @@ const Column = () => {
                     <>
                       <div onClick={handleOpenCard}>
                         <Card
-                          key={card.id.toString()}
+                          key={card.id}
                           title={card.title}
                           desc={card.desc}
                         />
@@ -75,6 +92,7 @@ const Column = () => {
                       >
                         <Box sx={{ ...style, backgroundColor: 'white' }}>
                           <h2 id="parent-modal-title">Task 1</h2>
+                          <p>{card.desc}</p>
                           <Box
                             component="form"
                             sx={{
@@ -143,7 +161,7 @@ const Column = () => {
         </ProjectColumn>
       ))}
       <AddNewColumn />
-    </>
+    </TaskBoardContainer>
   );
 };
 
