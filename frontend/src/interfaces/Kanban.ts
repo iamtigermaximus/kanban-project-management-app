@@ -29,3 +29,14 @@ export interface IProject {
   name: string;
   data: ICategory[];
 }
+export type ColumnProps = {
+  selectedProject: IProject | null; // Replace 'IProject' with the appropriate type for your project object
+};
+
+export type ColumnsProps = {
+  selectedProject: IProject | null;
+};
+
+export type ProjectsListProps = {
+  handleProjectSelect: (project: IProject) => void;
+};

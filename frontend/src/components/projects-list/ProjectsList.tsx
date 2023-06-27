@@ -7,11 +7,7 @@ import {
 import CreateNewBoard from '../modals/createNewBoard/CreateNewBoard';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { IProject } from '../../interfaces/Kanban';
-
-type ProjectsListProps = {
-  handleProjectSelect: (project: IProject) => void;
-};
+import { IProject, ProjectsListProps } from '../../interfaces/Kanban';
 
 const ProjectsList = ({ handleProjectSelect }: ProjectsListProps) => {
   const [projects, setProjects] = useState<IProject[]>([]); // State variable to store the fetched projects

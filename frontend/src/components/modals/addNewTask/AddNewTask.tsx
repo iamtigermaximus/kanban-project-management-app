@@ -19,6 +19,7 @@ import {
 } from './AddNewTask.styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditBoardModal from '../editBoard/EditBoardModal';
+import useModalState from '../useModalState';
 
 const style = {
   position: 'absolute',
@@ -30,15 +31,8 @@ const style = {
 };
 
 const AddNewTask = () => {
-  const [open, setOpen] = useState(false);
+  const { open, handleOpen, handleClose } = useModalState(false);
   const [status, setStatus] = useState('');
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleChange = (event: SelectChangeEvent) => {
     setStatus(event.target.value as string);

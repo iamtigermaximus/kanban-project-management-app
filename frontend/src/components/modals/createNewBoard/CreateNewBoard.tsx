@@ -8,6 +8,7 @@ import {
   ModalButton,
   ModalButtonContainer,
 } from './CreateNewBoard.styles';
+import useModalState from '../useModalState';
 
 const style = {
   position: 'absolute',
@@ -20,13 +21,8 @@ const style = {
 };
 
 const CreateNewBoard = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const { open, handleOpen, handleClose } = useModalState(false);
+
   return (
     <div>
       <AddNewBoardButtonContainer onClick={handleOpen}>

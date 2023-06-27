@@ -16,6 +16,7 @@ import {
 import { SubtasksColumn } from '../addNewTask/AddNewTask.styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
+import useModalState from '../useModalState';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -28,17 +29,10 @@ const style = {
 
 const AddNewCard = () => {
   const [status, setStatus] = useState('');
-  const [open, setOpen] = useState(false);
+  const { open, handleOpen, handleClose } = useModalState(false);
 
   const handleChange = (event: SelectChangeEvent) => {
     setStatus(event.target.value as string);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
   };
 
   return (

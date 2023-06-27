@@ -20,7 +20,7 @@ import Card from '../card/Card';
 import AddNewCard from '../modals/addNewCard/AddNewCard';
 import AddNewColumn from '../modals/addNewColumn/AddNewColumn';
 import { SubtasksColumn } from '../modals/addNewTask/AddNewTask.styles';
-import { IProject } from '../../interfaces/Kanban';
+import { ColumnProps } from '../../interfaces/Kanban';
 
 const style = {
   position: 'absolute',
@@ -29,10 +29,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   p: 4,
-};
-
-type ColumnProps = {
-  selectedProject: IProject | null; // Replace 'IProject' with the appropriate type for your project object
 };
 
 const Column = ({ selectedProject }: ColumnProps) => {
@@ -68,7 +64,14 @@ const Column = ({ selectedProject }: ColumnProps) => {
                 {project.cards.map((card) => (
                   <>
                     <div onClick={handleOpenCard}>
-                      <Card key={card.id} title={card.title} desc={card.desc} />
+                      <Card
+                        id={card.id}
+                        title={card.title}
+                        desc={card.desc}
+                        labels={card.labels}
+                        date={card.date}
+                        tasks={card.tasks}
+                      />
                     </div>
                     <Modal
                       open={openCard}

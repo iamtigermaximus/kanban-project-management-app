@@ -9,6 +9,7 @@ import {
   ModalButton,
   ModalButtonContainer,
 } from './AddNewColumn.styles';
+import useModalState from '../useModalState';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -20,14 +21,7 @@ const style = {
 };
 
 const AddNewColumn = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const { open, handleOpen, handleClose } = useModalState(false);
 
   return (
     <div>
