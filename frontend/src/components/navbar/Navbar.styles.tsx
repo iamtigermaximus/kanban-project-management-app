@@ -12,7 +12,7 @@ export const NavigationBar = styled(AppBar)`
 export const MenuContainer = styled(Box)`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
   width: 80%;
 `;
 
@@ -46,7 +46,7 @@ export const ProfileIcon = styled('div')`
   color: white;
 `;
 
-export const ProjectName = styled('div')`
+export const ProjectName = styled('h1')`
   font-size: 20px;
   display: flex;
   align-items: center;

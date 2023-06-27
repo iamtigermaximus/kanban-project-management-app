@@ -14,6 +14,7 @@ import {
   ColumnHeader,
   ProjectColumn,
   ProjectColumnCard,
+  ProjectBoardHeader,
 } from './Column.styles';
 import Card from '../card/Card';
 import AddNewCard from '../modals/addNewCard/AddNewCard';
@@ -55,91 +56,95 @@ const Column = ({ selectedProject }: ColumnProps) => {
   };
 
   return (
-    <TaskBoardContainer>
-      <ProjectColumn>
-        {selectedProject?.data.map((project) => (
-          <ProjectColumnCard key={project.id}>
-            <ColumnTaskContainer>
-              <ColumnHeader>{project.categoryTitle} (0)</ColumnHeader>
-              {project.cards.map((card) => (
-                <>
-                  <div onClick={handleOpenCard}>
-                    <Card key={card.id} title={card.title} desc={card.desc} />
-                  </div>
-                  <Modal
-                    open={openCard}
-                    onClose={handleCloseCard}
-                    aria-labelledby="parent-modal-title"
-                    aria-describedby="parent-modal-description"
-                  >
-                    <Box sx={{ ...style, backgroundColor: 'white' }}>
-                      <h2 id="parent-modal-title">Task 1</h2>
-                      <p>{card.desc}</p>
-                      <Box
-                        component="form"
-                        sx={{
-                          '& .MuiTextField-root': {
-                            my: 1,
-                            width: '100%',
-                          },
-                        }}
-                        noValidate
-                        autoComplete="off"
-                      >
-                        <div>
-                          <h5>Subtasks</h5>
-                          <SubtasksColumn>
-                            <Checkbox
-                              checked={checked}
-                              onChange={handleCheckbox}
-                              inputProps={{ 'aria-label': 'controlled' }}
-                            />
-                            <h3>Subtask 1</h3>
-                          </SubtasksColumn>
-                          <SubtasksColumn>
-                            <Checkbox
-                              checked={checked}
-                              onChange={handleCheckbox}
-                              inputProps={{ 'aria-label': 'controlled' }}
-                            />
-                            <h3>Subtask 2</h3>
-                          </SubtasksColumn>
-                          <SubtasksColumn>
-                            <Checkbox
-                              checked={checked}
-                              onChange={handleCheckbox}
-                              inputProps={{ 'aria-label': 'controlled' }}
-                            />
-                            <h3>Subtask 3</h3>
-                          </SubtasksColumn>
-                          <h5>Current Status</h5>
-                          <FormControl fullWidth>
-                            <Select
-                              labelId="demo-simple-select-label"
-                              id="demo-simple-select"
-                              value={status}
-                              onChange={handleChange}
-                            >
-                              <MenuItem value="Todo">Todo</MenuItem>
-                              <MenuItem value="In Progress">
-                                In Progress
-                              </MenuItem>
-                              <MenuItem value="Completed">Completed</MenuItem>
-                            </Select>
-                          </FormControl>
-                        </div>
+    <>
+      <TaskBoardContainer>
+        <ProjectBoardHeader>{selectedProject?.name}</ProjectBoardHeader>
+
+        <ProjectColumn>
+          {selectedProject?.data.map((project) => (
+            <ProjectColumnCard key={project.id}>
+              <ColumnTaskContainer>
+                <ColumnHeader>{project.categoryTitle} (0)</ColumnHeader>
+                {project.cards.map((card) => (
+                  <>
+                    <div onClick={handleOpenCard}>
+                      <Card key={card.id} title={card.title} desc={card.desc} />
+                    </div>
+                    <Modal
+                      open={openCard}
+                      onClose={handleCloseCard}
+                      aria-labelledby="parent-modal-title"
+                      aria-describedby="parent-modal-description"
+                    >
+                      <Box sx={{ ...style, backgroundColor: 'white' }}>
+                        <h2 id="parent-modal-title">Task 1</h2>
+                        <p>{card.desc}</p>
+                        <Box
+                          component="form"
+                          sx={{
+                            '& .MuiTextField-root': {
+                              my: 1,
+                              width: '100%',
+                            },
+                          }}
+                          noValidate
+                          autoComplete="off"
+                        >
+                          <div>
+                            <h5>Subtasks</h5>
+                            <SubtasksColumn>
+                              <Checkbox
+                                checked={checked}
+                                onChange={handleCheckbox}
+                                inputProps={{ 'aria-label': 'controlled' }}
+                              />
+                              <h3>Subtask 1</h3>
+                            </SubtasksColumn>
+                            <SubtasksColumn>
+                              <Checkbox
+                                checked={checked}
+                                onChange={handleCheckbox}
+                                inputProps={{ 'aria-label': 'controlled' }}
+                              />
+                              <h3>Subtask 2</h3>
+                            </SubtasksColumn>
+                            <SubtasksColumn>
+                              <Checkbox
+                                checked={checked}
+                                onChange={handleCheckbox}
+                                inputProps={{ 'aria-label': 'controlled' }}
+                              />
+                              <h3>Subtask 3</h3>
+                            </SubtasksColumn>
+                            <h5>Current Status</h5>
+                            <FormControl fullWidth>
+                              <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={status}
+                                onChange={handleChange}
+                              >
+                                <MenuItem value="Todo">Todo</MenuItem>
+                                <MenuItem value="In Progress">
+                                  In Progress
+                                </MenuItem>
+                                <MenuItem value="Completed">Completed</MenuItem>
+                              </Select>
+                            </FormControl>
+                          </div>
+                        </Box>
                       </Box>
-                    </Box>
-                  </Modal>
-                </>
-              ))}
-            </ColumnTaskContainer>
-            <AddNewCard />
-          </ProjectColumnCard>
-        ))}
-        <AddNewColumn />
-      </ProjectColumn>
-    </TaskBoardContainer>
+                    </Modal>
+                  </>
+                ))}
+              </ColumnTaskContainer>
+              <AddNewCard />
+            </ProjectColumnCard>
+          ))}
+          <AddNewColumn />
+        </ProjectColumn>
+      </TaskBoardContainer>
+    </>
   );
 };
 

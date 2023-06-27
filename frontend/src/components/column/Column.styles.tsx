@@ -10,7 +10,7 @@ export const TaskBoardContainer = styled(Container)`
   padding: 20px;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 `;
 
 export const ColumnHeader = styled(Box)`
@@ -88,5 +88,16 @@ export const BoardColumn = styled('div')`
   display: flex;
   flex-direction: row;
   align-items: center;
-  jus
+`;
+
+export const ProjectBoardHeader = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // background-color: pink;
+  font-size: 30px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: white;
 `;

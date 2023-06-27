@@ -5,7 +5,7 @@ import {
   NavigationBar,
   ProfileContainer,
   ProfileIcon,
-  ProjectName,
+  // ProjectName,
 } from './Navbar.styles';
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import ProfileMenu from '../profile/Profile';
@@ -21,7 +21,7 @@ const Navbar = () => {
         </Brand>
       </BrandContainer>
       <MenuContainer>
-        <ProjectName>Project 1</ProjectName>
+        {/* <ProjectName>Project 1</ProjectName> */}
         <AddNewTask />
       </MenuContainer>
       <ProfileContainer>
