@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export const SideBarContainer = styled(Container)`
@@ -7,10 +7,4 @@ export const SideBarContainer = styled(Container)`
   width: 20%;
   position: fixed;
   padding: 20px;
-`;
-
-export const SideBarHeader = styled(Box)`
-  padding: 20px;
-  color: #828fa3;
-  letter-spacing: 1px;
 `;

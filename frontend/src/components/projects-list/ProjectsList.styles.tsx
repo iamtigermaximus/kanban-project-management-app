@@ -55,3 +55,8 @@ export const BoardColumn = styled('div')`
   align-items: center;
   jus
 `;
+export const SideBarHeader = styled(Box)`
+  padding: 20px;
+  color: #828fa3;
+  letter-spacing: 1px;
+`;

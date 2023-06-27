@@ -2,6 +2,7 @@ import {
   ProjectName,
   ProjectNameContainer,
   ProjectsListContainer,
+  SideBarHeader,
 } from './ProjectsList.styles';
 import CreateNewBoard from '../modals/createNewBoard/CreateNewBoard';
 import { useEffect, useState } from 'react';
@@ -25,6 +26,7 @@ const ProjectsList = () => {
   }, []);
   return (
     <ProjectsListContainer>
+      <SideBarHeader>All Boards (0)</SideBarHeader>
       {projects.map((project) => (
         <ProjectNameContainer key={project.id}>
           <ProjectName>{project.name}</ProjectName>
