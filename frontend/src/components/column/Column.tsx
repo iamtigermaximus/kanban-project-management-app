@@ -60,7 +60,9 @@ const Column = ({ selectedProject }: ColumnProps) => {
           {selectedProject?.data.map((project) => (
             <ProjectColumnCard key={project.id}>
               <ColumnTaskContainer>
-                <ColumnHeader>{project.categoryTitle} (0)</ColumnHeader>
+                <ColumnHeader>
+                  {project.categoryTitle} ({project.cards.length})
+                </ColumnHeader>
                 {project.cards.map((card) => (
                   <>
                     <div onClick={handleOpenCard}>
