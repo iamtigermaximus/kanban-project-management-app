@@ -19,7 +19,8 @@ export interface ICard {
 }
 
 export interface ICategory {
-  id: number;
+  // id: number;
+  id: string;
   categoryTitle: string;
   cards: ICard[];
 }
