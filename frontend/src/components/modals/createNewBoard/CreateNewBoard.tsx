@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Modal, Box, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { style } from '../addNewCard/AddNewCard.styles';
 import {
   AddNewBoardButton,
   AddNewBoardButtonContainer,
@@ -9,7 +10,6 @@ import {
   ModalButtonContainer,
 } from './CreateNewBoard.styles';
 import useModalState from '../useModalState';
-import { style } from '../addNewCard/AddNewCard.styles';
 import axios from 'axios';
 import { IProject } from '../../../interfaces/Kanban';
 
@@ -22,6 +22,7 @@ const CreateNewBoard = () => {
     'In Progress',
     'Completed',
   ]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [projects, setProjects] = useState<IProject[]>([]);
 
   const fetchProjects = async () => {
@@ -48,7 +49,7 @@ const CreateNewBoard = () => {
         name,
         data: newColumns,
       };
-
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await axios.post(
         'http://localhost:5500/api/projects',
         newProject
