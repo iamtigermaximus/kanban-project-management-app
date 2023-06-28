@@ -24,6 +24,7 @@ const CreateNewBoard = () => {
   ]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [projects, setProjects] = useState<IProject[]>([]);
+  const [projectCount, setProjectCount] = useState(0);
 
   const fetchProjects = async () => {
     try {
@@ -63,6 +64,7 @@ const CreateNewBoard = () => {
         'http://localhost:5500/api/projects'
       );
       setProjects(projectsResponse.data);
+      setProjectCount(projectCount + 1);
     } catch (error) {
       console.error('Error adding project:', error);
     }
