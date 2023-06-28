@@ -1,13 +1,8 @@
 {
-  "functions": {
-    "api": {
-      "memory": 512
-    }
-  },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/server.js"
+      "src": "/(.*)",
+      "dest": "/server.js"
     }
   ]
 }
