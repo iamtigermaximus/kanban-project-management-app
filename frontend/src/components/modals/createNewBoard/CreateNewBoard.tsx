@@ -55,21 +55,13 @@ const CreateNewBoard = () => {
       );
       setName('');
       handleClose();
-      //   fetchProjects();
-      //   window.location.reload();
+      fetchProjects();
+      window.location.reload();
 
-      //   const projectsResponse = await axios.get(
-      //     'http://localhost:5500/api/projects'
-      //   );
-      //   setProjects(projectsResponse.data);
-      // } catch (error) {
-      //   console.error('Error adding project:', error);
-      // }
-      // Fetch the updated list of projects
       const projectsResponse = await axios.get(
         'http://localhost:5500/api/projects'
       );
-      setProjects(projectsResponse.data); // Update projects state with the fetched data
+      setProjects(projectsResponse.data);
     } catch (error) {
       console.error('Error adding project:', error);
     }
