@@ -28,7 +28,9 @@ const CreateNewBoard = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get('http://localhost:5500/api/projects');
+      const response = await axios.get(
+        'https://kanban-project-management-app.vercel.app/api/projects'
+      );
       setProjects(response.data);
     } catch (error) {
       console.error('Error fetching projects:', error);
@@ -52,7 +54,7 @@ const CreateNewBoard = () => {
       };
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await axios.post(
-        'http://localhost:5500/api/projects',
+        'https://kanban-project-management-app.vercel.app/api/projects',
         newProject
       );
       setName('');
@@ -61,7 +63,7 @@ const CreateNewBoard = () => {
       window.location.reload();
 
       const projectsResponse = await axios.get(
-        'http://localhost:5500/api/projects'
+        'https://kanban-project-management-app.vercel.app/api/projects'
       );
       setProjects(projectsResponse.data);
       setProjectCount(projectCount + 1);

@@ -13,7 +13,9 @@ const Board = () => {
     // Fetch the list of projects and set the first project as the selected project
     const fetchProjects = async () => {
       try {
-        const response = await axios.get('http://localhost:5500/api/projects');
+        const response = await axios.get(
+          'https://kanban-project-management-app.vercel.app/api/projects'
+        );
         const projectsData = response.data;
         setProjects(projectsData);
         setSelectedProject(projectsData[0] || null);
